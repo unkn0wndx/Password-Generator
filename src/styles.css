@@ -27,8 +27,7 @@ body {
 }
 
 .pw {
-  background-color: #ffff;
-  color: #212529;
+  color: #fff;
   border-radius: 5px;
   display: flex;
   font-size: 1.5rem;
@@ -38,6 +37,7 @@ body {
   position: relative;
   padding: 1rem;
   overflow: auto;
+  border: #fff solid 1px;
 }
 
 .pw button {
