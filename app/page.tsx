@@ -57,6 +57,7 @@ export default function Home() {
       <div className="p-1">
         <div className="flex flex-col max-w-md my-3 gap-3">
           <Input
+            isReadOnly
             size='lg'
             variant="bordered"
             type="text"
