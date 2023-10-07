@@ -60,6 +60,7 @@ export default function Home() {
             isReadOnly
             size='lg'
             variant="bordered"
+            className='bg-content1 rounded-2xl'
             type="text"
             value={password}
             onClick={() => setIsOpen(true)}
@@ -76,6 +77,8 @@ export default function Home() {
               label="Length"
               defaultSelectedKeys={["16"]}
               {...register("length")}
+              variant='bordered'
+              className='bg-content1 rounded-2xl'
             >
               {numbersLength.map((number) => (
                 <SelectItem key={number} value={number}>
