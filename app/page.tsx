@@ -13,6 +13,7 @@ interface IFormInput {
   length: string
   numbers: boolean
   uppercase: boolean
+  lowercase: boolean
   symbols: boolean
 }
 
@@ -20,7 +21,7 @@ const numbersLength: number[] = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1
 
 export default function Home() {
 
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const { register, handleSubmit, setValue } = useForm<IFormInput>()
@@ -63,12 +64,11 @@ export default function Home() {
           </Button>
         </div>
 
-        <div className="flex flex-row flex-wrap gap-2">
-          <div className='flex-auto w-24 h-full'>
+        <div className="flex flex-col flex-wrap gap-2 max-w-md">
+          <div className='w-full'>
             <Select
               label="Length"
-              defaultSelectedKeys={["10"]}
-              className="max-w-xs"
+              defaultSelectedKeys={["16"]}
               {...register("length")}
             >
               {numbersLength.map((number) => (
@@ -78,23 +78,55 @@ export default function Home() {
               ))}
             </Select>
           </div>
-          <div className='flex flex-wrap gap-2'>
-            <div className="flex flex-col flex-wrap gap-2">
-              <div>
-                <Checkbox defaultSelected onValueChange={(isSelected: boolean) => setValue('uppercase', isSelected)} size="lg">Uppercase</Checkbox>
+          <div className='flex justify-center flex-wrap gap-2'>
+            <Checkbox
+              aria-label="hola"
+              className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
+              defaultSelected onValueChange={(isSelected: boolean) => setValue('uppercase', isSelected)}
+            >
+              <div className="w-full flex justify-between gap-2">
+                <div className="flex flex-col items-end gap-1">
+                  <span className="text-tiny text-default-500">Uppercase</span>
+                </div>
               </div>
-              <div>
-                <Checkbox defaultSelected onValueChange={(isSelected: boolean) => setValue('numbers', isSelected)} size="lg">Numbers</Checkbox>
+            </Checkbox>
+
+            <Checkbox
+              aria-label="hola"
+              className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
+              defaultSelected onValueChange={(isSelected: boolean) => setValue('lowercase', isSelected)}
+            >
+              <div className="w-full flex justify-between gap-2">
+                <div className="flex flex-col items-end gap-1">
+                  <span className="text-tiny text-default-500">Lowercase</span>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col flex-wrap gap-2">
-              <div>
-                <Checkbox defaultSelected onValueChange={(isSelected: boolean) => setValue('symbols', isSelected)} size="lg">Symbols</Checkbox>
+            </Checkbox>
+            <Checkbox
+              aria-label="hola"
+              className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
+              defaultSelected onValueChange={(isSelected: boolean) => setValue('numbers', isSelected)}
+            >
+              <div className="w-full flex justify-between gap-2">
+                <div className="flex flex-col items-end gap-1">
+                  <span className="text-tiny text-default-500">Numbers</span>
+                </div>
               </div>
-            </div>
+            </Checkbox>
+            <Checkbox
+              aria-label="hola"
+              className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
+              defaultSelected onValueChange={(isSelected: boolean) => setValue('symbols', isSelected)}
+            >
+              <div className="w-full flex justify-between gap-2">
+                <div className="flex flex-col items-end gap-1">
+                  <span className="text-tiny text-default-500">Symbols</span>
+                </div>
+              </div>
+            </Checkbox>
           </div>
         </div>
       </div>
-    </main>
+    </main >
   )
 }
