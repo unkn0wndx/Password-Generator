@@ -7,6 +7,7 @@ import generator from "generate-password-browser";
 import { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Tooltip } from "@nextui-org/tooltip";
+import { Select, SelectItem } from "@nextui-org/select";
 
 interface IFormInput {
   length: string
@@ -14,6 +15,8 @@ interface IFormInput {
   uppercase: boolean
   symbols: boolean
 }
+
+const numbersLength: number[] = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
 
 export default function Home() {
 
@@ -62,14 +65,18 @@ export default function Home() {
 
         <div className="flex flex-row flex-wrap gap-2">
           <div className='flex-auto w-24 h-full'>
-            <Input
-              type="number"
+            <Select
               label="Length"
-              defaultValue={'16'}
+              defaultSelectedKeys={["10"]}
+              className="max-w-xs"
               {...register("length")}
-              // labelPlacement='outside-left'
-              size='lg'
-            />
+            >
+              {numbersLength.map((number) => (
+                <SelectItem key={number} value={number}>
+                  {number.toString()}
+                </SelectItem>
+              ))}
+            </Select>
           </div>
           <div className='flex flex-wrap gap-2'>
             <div className="flex flex-col flex-wrap gap-2">
