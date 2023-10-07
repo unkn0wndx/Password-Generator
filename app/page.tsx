@@ -21,14 +21,16 @@ const numbersLength: number[] = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1
 
 export default function Home() {
 
-  const [password, setPassword] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [password, setPassword] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const { register, handleSubmit, setValue } = useForm<IFormInput>()
 
   const onSubmit: SubmitHandler<IFormInput> = ({ length = '16', numbers = true, symbols = true, uppercase = true, lowercase = true }) => {
 
     try {
+      setError(false);
       const data = generator.generate({
         length: parseInt(length),
         numbers,
@@ -41,7 +43,7 @@ export default function Home() {
       setIsOpen(false);
       navigator.clipboard.writeText(data);
     } catch (error) {
-      alert("You must select at least one option")
+      setError(true);
     }
   }
 
@@ -61,6 +63,7 @@ export default function Home() {
             value={password}
             onClick={() => setIsOpen(true)}
           />
+          {error && <div className="self-center text-sm font-light dark:text-red-400 animate__animated animate__pulse animate__faster">You must select at least one option</div>}
           <Button onClick={handleSubmit(onSubmit)} color="success" className="hover:-translate-y-1" variant="shadow" size='lg'>
             Generate
           </Button>
