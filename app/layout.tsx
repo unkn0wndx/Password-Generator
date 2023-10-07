@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className='dark'>
       {/* <body className={inter.className}> */}
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen bg-background font-sans antialiased bg-gradient-to-r from-zinc-800 to-zinc-900">
         <Providers>
           {children}
         </Providers>
