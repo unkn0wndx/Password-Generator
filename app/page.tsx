@@ -6,7 +6,6 @@ import { Checkbox } from "@nextui-org/checkbox";
 import generator from "generate-password-browser";
 import { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Tooltip } from "@nextui-org/tooltip";
 import { Select, SelectItem } from "@nextui-org/select";
 
 interface IFormInput {
@@ -26,21 +25,23 @@ export default function Home() {
 
   const { register, handleSubmit, setValue } = useForm<IFormInput>()
 
-  const onSubmit: SubmitHandler<IFormInput> = ({ length = '16', numbers = true, symbols = true, uppercase = true }) => {
+  const onSubmit: SubmitHandler<IFormInput> = ({ length = '16', numbers = true, symbols = true, uppercase = true, lowercase = true }) => {
 
-    const data = generator.generate({
-      length: parseInt(length),
-      numbers,
-      lowercase: true,
-      uppercase,
-      symbols,
-      excludeSimilarCharacters: true,
-      strict: true,
-    })
+    try {
+      const data = generator.generate({
+        length: parseInt(length),
+        numbers,
+        lowercase,
+        uppercase,
+        symbols
+      })
 
-    setPassword(data);
-    setIsOpen(false);
-    navigator.clipboard.writeText(data);
+      setPassword(data);
+      setIsOpen(false);
+      navigator.clipboard.writeText(data);
+    } catch (error) {
+      alert("You must select at least one option")
+    }
   }
 
   return (
@@ -80,7 +81,6 @@ export default function Home() {
           </div>
           <div className='flex justify-center flex-wrap gap-2'>
             <Checkbox
-              aria-label="hola"
               className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
               defaultSelected onValueChange={(isSelected: boolean) => setValue('uppercase', isSelected)}
             >
@@ -92,7 +92,6 @@ export default function Home() {
             </Checkbox>
 
             <Checkbox
-              aria-label="hola"
               className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
               defaultSelected onValueChange={(isSelected: boolean) => setValue('lowercase', isSelected)}
             >
@@ -103,7 +102,6 @@ export default function Home() {
               </div>
             </Checkbox>
             <Checkbox
-              aria-label="hola"
               className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
               defaultSelected onValueChange={(isSelected: boolean) => setValue('numbers', isSelected)}
             >
@@ -114,7 +112,6 @@ export default function Home() {
               </div>
             </Checkbox>
             <Checkbox
-              aria-label="hola"
               className="inline-flex w-full bg-content1 m-0 hover:bg-content2 items-center justify-start cursor-pointer rounded-lg gap-2 p-4 border-2 border-transparent data-[selected=true]:border-primary"
               defaultSelected onValueChange={(isSelected: boolean) => setValue('symbols', isSelected)}
             >
