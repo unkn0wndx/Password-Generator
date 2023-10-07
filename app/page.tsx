@@ -7,6 +7,7 @@ import generator from "generate-password-browser";
 import { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Select, SelectItem } from "@nextui-org/select";
+import 'animate.css';
 
 interface IFormInput {
   length: string
@@ -50,7 +51,7 @@ export default function Home() {
       <div className="self-center text-xl font-light sm:text-2xl dark:text-white">
         Password Generator
       </div>
-      {isOpen && password.length > 0 && <div className="self-center text-sm font-light dark:text-green-400">Password copied</div>}
+      {isOpen && password.length > 0 && <div className="self-center text-sm font-light dark:text-green-400 animate__animated animate__pulse animate__faster">Password copied</div>}
       <div className="p-1">
         <div className="flex flex-col max-w-md my-3 gap-3">
           <Input

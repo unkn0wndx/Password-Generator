@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.1.13",
+    "animate.css": "^4.1.1",
     "framer-motion": "^10.16.4",
     "generate-password-browser": "^1.1.0",
     "next": "13.5.4",
